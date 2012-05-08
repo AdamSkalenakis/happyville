@@ -1,0 +1,7 @@
+# Compiled Source #
+###################
+*obj*
+*bin*
+*.exe
+*.pdb
+*.cache
