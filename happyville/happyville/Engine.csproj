@@ -116,9 +116,10 @@
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\happyvilleContent\happyvilleContent.contentproj">
-      <Name>happyvilleContent</Name>
+    <ProjectReference Include="..\happyvilleContent\Content.contentproj">
+      <Name>Content</Name>
       <XnaReferenceType>Content</XnaReferenceType>
+      <Project>{7169809F-5B7B-4237-83F2-2112D7945B96}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
