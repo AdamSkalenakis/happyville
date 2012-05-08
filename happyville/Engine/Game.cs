@@ -25,8 +25,8 @@ namespace happyville
     public class Game : Microsoft.Xna.Framework.Game
     {
         #region Data Members
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        GraphicsDeviceManager graphics;     // Manager for graphiocs
+        SpriteBatch spriteBatch;            // Used to draw to the screen
         #endregion
 
         #region Initialization
