@@ -124,4 +124,7 @@ namespace happyville
         }
         #endregion
     }
+
+    // Collision detection enum
+    enum collision { NONE, NONENTITY, EVERYTHING };
 }
