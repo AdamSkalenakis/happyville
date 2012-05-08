@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "happyville", "happyville\happyville.csproj", "{95D91DF2-E446-469D-B4D6-22EE1596FD8B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "happyville", "happyville\happyville\happyville.csproj", "{2718B7D3-48D7-45B2-9C8D-B3A8CA7B11A4}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "happyvilleContent", "happyville\happyvilleContent\happyvilleContent.contentproj", "{7169809F-5B7B-4237-83F2-2112D7945B96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +11,12 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{95D91DF2-E446-469D-B4D6-22EE1596FD8B}.Debug|x86.ActiveCfg = Debug|x86
-		{95D91DF2-E446-469D-B4D6-22EE1596FD8B}.Debug|x86.Build.0 = Debug|x86
-		{95D91DF2-E446-469D-B4D6-22EE1596FD8B}.Release|x86.ActiveCfg = Release|x86
-		{95D91DF2-E446-469D-B4D6-22EE1596FD8B}.Release|x86.Build.0 = Release|x86
+		{2718B7D3-48D7-45B2-9C8D-B3A8CA7B11A4}.Debug|x86.ActiveCfg = Debug|x86
+		{2718B7D3-48D7-45B2-9C8D-B3A8CA7B11A4}.Debug|x86.Build.0 = Debug|x86
+		{2718B7D3-48D7-45B2-9C8D-B3A8CA7B11A4}.Release|x86.ActiveCfg = Release|x86
+		{2718B7D3-48D7-45B2-9C8D-B3A8CA7B11A4}.Release|x86.Build.0 = Release|x86
+		{7169809F-5B7B-4237-83F2-2112D7945B96}.Debug|x86.ActiveCfg = Debug|x86
+		{7169809F-5B7B-4237-83F2-2112D7945B96}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
