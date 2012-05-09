@@ -27,6 +27,7 @@ namespace happyville
         #region Data Members
         GraphicsDeviceManager graphics;     // Manager for graphiocs
         SpriteBatch spriteBatch;            // Used to draw to the screen
+        Item test_item;                     // Instance to test classes                         !!! TODO: Remove.
         #endregion
 
         #region Initialization
@@ -44,6 +45,9 @@ namespace happyville
             // Change of resolution
             graphics.PreferredBackBufferWidth = 1152;
             graphics.PreferredBackBufferHeight = 864;
+
+            // Test Item                                                                        !!! TODO: Remove.
+            test_item = new Player();
         }
 
         /****************************************************************************
@@ -75,6 +79,7 @@ namespace happyville
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            test_item.LoadContent(GraphicsDevice, Content);
         }
 
         /****************************************************************************
@@ -119,6 +124,7 @@ namespace happyville
             GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
+            test_item.Draw();
 
             base.Draw(gameTime);
         }

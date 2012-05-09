@@ -35,6 +35,7 @@ namespace happyville
         protected string interact = "None";                 // What can interact with the object        !!! TODO: Decide on data type for this
         protected int level = 1;                            // Display level                            !!! TODO: Might need to rethink how this is specified
         protected string visible = "Never";                 // When this object is visible              !!! TODO: Decide on data type for this
+        protected SpriteBatch spriteBatch;                  // Used to draw to the screen
         #endregion
 
         #region Initialization
@@ -48,5 +49,32 @@ namespace happyville
         }
         #endregion
 
+        #region Draw
+        /****************************************************************************
+         * Draw()       This is called when the Item should draw itself.
+         * Arguments    ---
+         * Returns      ---
+         ****************************************************************************/
+        public void Draw()
+        {
+            if (graphic == null) return;
+            // Draw the sprite.
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
+            spriteBatch.Draw(graphic, graphic_position, Color.White);
+            spriteBatch.End(); 
+        }
+
+        /****************************************************************************
+         * LoadContent()    LoadContent will be called once per game and is the place 
+         *                  to load all of your content.
+         * Arguments        ---
+         * Returns          ---
+         ****************************************************************************/
+        public virtual void LoadContent(GraphicsDevice GraphicsDevice, ContentManager Content)
+        {
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+        }
+        #endregion
     }
 }

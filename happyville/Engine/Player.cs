@@ -40,7 +40,22 @@ namespace happyville
          ****************************************************************************/
         public Player()
         {
-            this.level = 9;
+            level = 9;
+        }
+
+        /****************************************************************************
+         * LoadContent()    LoadContent will be called once per game and is the place 
+         *                  to load all of your content.
+         * Arguments        ---
+         * Returns          ---
+         ****************************************************************************/
+        public override void LoadContent(GraphicsDevice GraphicsDevice, ContentManager Content)
+        {
+            // Load texture for this Player
+            graphic = Content.Load<Texture2D>("images/player");
+
+            // Call parent's LoadContent
+            base.LoadContent(GraphicsDevice, Content);
         }
         #endregion
 

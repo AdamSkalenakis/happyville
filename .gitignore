@@ -4,4 +4,5 @@
 *bin*
 *.exe
 *.pdb
-*.cache
+*cache
+*cachefile

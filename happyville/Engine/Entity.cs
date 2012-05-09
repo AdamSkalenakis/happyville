@@ -39,10 +39,10 @@ namespace happyville
          ****************************************************************************/
         public Entity()
         {
-            this.level = 8;
-            this.interact = "All";
-            this.visible = "In Sight";
-            this.collision = collision.NONENTITY;
+            level = 8;
+            interact = "All";
+            visible = "In Sight";
+            collision = collision.NONENTITY;
         }
         #endregion
     }
