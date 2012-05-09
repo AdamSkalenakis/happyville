@@ -25,5 +25,24 @@ namespace happyville
 {
     class Player : Entity
     {
+
+        #region Data Members
+        protected string status = null;     // Status effect on this player                         !!! TODO: Change to pointers to effect objects, possibly an array or linked list
+        protected Item target = null;       // Pointer to current target
+        protected string mode = "Normal";   // Current character mode (Normal/Sprint/Focus)         !!! TODO: Change to enum
+        #endregion
+        
+        #region Initialization
+        /****************************************************************************
+         * Constructor  Creates a new object
+         * Arguments    ---
+         * Returns      ---
+         ****************************************************************************/
+        public Player()
+        {
+            this.level = 9;
+        }
+        #endregion
+
     }
 }

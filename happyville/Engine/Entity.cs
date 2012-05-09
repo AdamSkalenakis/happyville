@@ -27,10 +27,9 @@ namespace happyville
     {
 
         #region Data Members
-        protected Boolean moveable = true;
-        protected string type = "Human";
+        protected Boolean moveable = true;      // Whether the entity moves                 !!! TODO: Might want to move up to Item
+        protected string type = "Human";        // Type of entity                           !!! TODO: Might be unnecessary
         #endregion
-
         
         #region Initialization
         /****************************************************************************
