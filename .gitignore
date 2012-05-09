@@ -6,3 +6,4 @@
 *.pdb
 *cache
 *cachefile
+*.suo
