@@ -25,5 +25,26 @@ namespace happyville
 {
     class Entity : Item
     {
+
+        #region Data Members
+        protected Boolean moveable = true;
+        protected string type = "Human";
+        #endregion
+
+        
+        #region Initialization
+        /****************************************************************************
+         * Constructor  Creates a new object
+         * Arguments    ---
+         * Returns      ---
+         ****************************************************************************/
+        public Entity()
+        {
+            this.level = 8;
+            this.interact = "All";
+            this.visible = "In Sight";
+            this.collision = collision.NONENTITY;
+        }
+        #endregion
     }
 }

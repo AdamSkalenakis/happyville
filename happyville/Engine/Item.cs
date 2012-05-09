@@ -28,14 +28,13 @@ namespace happyville
     {
 
         #region Data Members
-        Texture2D graphic = null;                   // Graphic for this Item
-        Vector2 graphic_position = Vector2.Zero;    // The graphic's location on 
-                                                    // screen
-        float facing = 0;                           // Angle of facing (radians)
-        collision collision = collision.NONE;       // What the object collides with
-        string interact = "None";                   // What can interact with the object        !!! TODO: Decide on data type for this
-        int level = 1;                              // Display level                            !!! TODO: Might need to rethink how this is specified
-        string visible = "Never";                   // When this object is visible              !!! TODO: Decide on data type for this
+        protected Texture2D graphic = null;                 // Graphic for this Item
+        protected Vector2 graphic_position = Vector2.Zero;  // The graphic's location on screen
+        protected float facing = 0;                         // Angle of facing (radians)
+        protected collision collision = collision.NONE;     // What the object collides with
+        protected string interact = "None";                 // What can interact with the object        !!! TODO: Decide on data type for this
+        protected int level = 1;                            // Display level                            !!! TODO: Might need to rethink how this is specified
+        protected string visible = "Never";                 // When this object is visible              !!! TODO: Decide on data type for this
         #endregion
 
         #region Initialization
