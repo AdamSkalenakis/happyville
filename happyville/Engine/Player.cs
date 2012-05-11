@@ -40,7 +40,7 @@ namespace happyville
          ****************************************************************************/
         public Player()
         {
-            level = 9;
+            layer = 9;
         }
 
         /****************************************************************************
@@ -59,5 +59,14 @@ namespace happyville
         }
         #endregion
 
+
+        #region Movement
+        /****************************************************************************
+         * MoveTo()         Moves the player's location to the set coordinates. 
+         *                  to load all of your content.
+         * Arguments        ---
+         * Returns          ---
+         ****************************************************************************/
+        #endregion
     }
 }

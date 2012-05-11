@@ -28,14 +28,31 @@ namespace happyville
     {
 
         #region Data Members
+        // Fields
         protected Texture2D graphic = null;                 // Graphic for this Item
-        protected Vector2 graphic_position = Vector2.Zero;  // The graphic's location on screen
+        protected Vector2 position = Vector2.Zero;          // The position of the item in the game level
         protected float facing = 0;                         // Angle of facing (radians)
-        protected collision collision = collision.NONE;     // What the object collides with
+        protected collision collides = collision.NONE;     // What the object collides with
         protected string interact = "None";                 // What can interact with the object        !!! TODO: Decide on data type for this
-        protected int level = 1;                            // Display level                            !!! TODO: Might need to rethink how this is specified
+        protected int layer = 1;                            // Display layer                            !!! TODO: Might need to rethink how this is specified
         protected string visible = "Never";                 // When this object is visible              !!! TODO: Decide on data type for this
         protected SpriteBatch spriteBatch;                  // Used to draw to the screen
+
+        // Properties (Derived)
+        protected Vector2 graphic_position // The graphic's location on screen
+        {
+            get
+            {
+                if (graphic == null) return position;
+                else
+                {
+                    Vector2 temp = Vector2.Zero;
+                    temp.Y = graphic.Height/2;
+                    temp.X = graphic.Width/2;
+                    return position - temp;
+                }
+            }
+        }
         #endregion
 
         #region Initialization

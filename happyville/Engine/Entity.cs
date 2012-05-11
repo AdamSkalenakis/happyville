@@ -39,10 +39,10 @@ namespace happyville
          ****************************************************************************/
         public Entity()
         {
-            level = 8;
+            layer = 8;
             interact = "All";
             visible = "In Sight";
-            collision = collision.NONENTITY;
+            collides = collision.NONENTITY;
         }
         #endregion
     }
