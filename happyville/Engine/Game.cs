@@ -119,7 +119,7 @@ namespace happyville
             // Mouse Movement
             mouse_previous = mouse_current;
             mouse_current = Mouse.GetState();
-            if (mouse_current.LeftButton == ButtonState.Released && mouse_previous.LeftButton == ButtonState.Pressed)
+            if (mouse_current.RightButton == ButtonState.Released && mouse_previous.RightButton == ButtonState.Pressed)
             {
                 if (!(mouse_current.X < 0
                     || mouse_current.X > GraphicsDevice.Viewport.Width
