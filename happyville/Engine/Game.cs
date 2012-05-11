@@ -1,6 +1,6 @@
 /************************************************************************************
  * Game.cs          Contains main game loops and logic
- * Project		    happyville - a social game involving people and monsters and 
+ * Project    	    happyville - a social game involving people and monsters and 
  *                  their interactions.
  * Author		    Sarah Herzog 
  * Version		    0.1
@@ -121,10 +121,16 @@ namespace happyville
             mouse_current = Mouse.GetState();
             if (mouse_current.LeftButton == ButtonState.Released && mouse_previous.LeftButton == ButtonState.Pressed)
             {
-                Vector2 destination;
-                destination.X = mouse_current.X;
-                destination.Y = mouse_current.Y;
-                player.MoveTo(destination);
+                if (!(mouse_current.X < 0
+                    || mouse_current.X > GraphicsDevice.Viewport.Width
+                    || mouse_current.Y < 0
+                    || mouse_current.Y > GraphicsDevice.Viewport.Height))
+                {
+                    Vector2 destination;
+                    destination.X = mouse_current.X;
+                    destination.Y = mouse_current.Y;
+                    player.MoveTo(destination);
+                }
             }
 
             base.Update(gameTime);
