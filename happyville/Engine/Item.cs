@@ -72,7 +72,7 @@ namespace happyville
          * Arguments    ---
          * Returns      ---
          ****************************************************************************/
-        public void Draw()
+        public virtual void Draw()
         {
             if (graphic == null) return;
             // Draw the sprite.
@@ -91,6 +91,18 @@ namespace happyville
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+        }
+        #endregion
+
+        #region Update
+        /****************************************************************************
+         * Update()     Allows the game to run logic such as updating the world,
+         *              checking for collisions, gathering input, and playing audio.
+         * Arguments    GameTime gameTime - Provides a snapshot of timing values
+         * Returns      ---
+         ****************************************************************************/
+        public virtual void Update(GameTime gameTime)
+        {
         }
         #endregion
     }

@@ -27,7 +27,8 @@ namespace happyville
         #region Data Members
         GraphicsDeviceManager graphics;     // Manager for graphiocs
         SpriteBatch spriteBatch;            // Used to draw to the screen
-        Item test_item;                     // Instance to test classes                         !!! TODO: Remove.
+        Entity test_item;                     // Instance to test classes                         !!! TODO: Remove.
+        GameTime previous;                  // Previous GameTime
         #endregion
 
         #region Initialization
@@ -48,6 +49,11 @@ namespace happyville
 
             // Test Item                                                                        !!! TODO: Remove.
             test_item = new Player();
+            // Set a destination
+            Vector2 destination;
+            destination.X = 1152;
+            destination.Y = 864;
+            test_item.MoveTo(destination);
         }
 
         /****************************************************************************
@@ -108,6 +114,7 @@ namespace happyville
                 this.Exit();
 
             // TODO: Add your update logic here
+            test_item.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -130,7 +137,5 @@ namespace happyville
         }
         #endregion
     }
-
-    // Collision detection enum
-    enum collision { NONE, NONENTITY, EVERYTHING };
+    
 }

@@ -58,15 +58,5 @@ namespace happyville
             base.LoadContent(GraphicsDevice, Content);
         }
         #endregion
-
-
-        #region Movement
-        /****************************************************************************
-         * MoveTo()         Moves the player's location to the set coordinates. 
-         *                  to load all of your content.
-         * Arguments        ---
-         * Returns          ---
-         ****************************************************************************/
-        #endregion
     }
 }
