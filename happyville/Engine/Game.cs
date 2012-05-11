@@ -25,10 +25,10 @@ namespace happyville
     public class Game : Microsoft.Xna.Framework.Game
     {
         #region Data Members
-        GraphicsDeviceManager graphics;     // Manager for graphiocs
-        SpriteBatch spriteBatch;            // Used to draw to the screen
-        Entity test_item;                     // Instance to test classes                         !!! TODO: Remove.
-        GameTime previous;                  // Previous GameTime
+        GraphicsDeviceManager graphics;             // Manager for graphiocs
+        SpriteBatch spriteBatch;                    // Used to draw to the screen
+        Entity player;                              // Instance to test classes                         !!! TODO: Remove.
+        MouseState mouse_current, mouse_previous;   // Mouse states for mouse control
         #endregion
 
         #region Initialization
@@ -48,12 +48,12 @@ namespace happyville
             graphics.PreferredBackBufferHeight = 864;
 
             // Test Item                                                                        !!! TODO: Remove.
-            test_item = new Player();
+            player = new Player();
             // Set a destination
             Vector2 destination;
             destination.X = 1152;
             destination.Y = 864;
-            test_item.MoveTo(destination);
+            player.MoveTo(destination);
         }
 
         /****************************************************************************
@@ -85,7 +85,7 @@ namespace happyville
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            test_item.LoadContent(GraphicsDevice, Content);
+            player.LoadContent(GraphicsDevice, Content);
         }
 
         /****************************************************************************
@@ -114,7 +114,18 @@ namespace happyville
                 this.Exit();
 
             // TODO: Add your update logic here
-            test_item.Update(gameTime);
+            player.Update(gameTime);
+
+            // Mouse Movement
+            mouse_previous = mouse_current;
+            mouse_current = Mouse.GetState();
+            if (mouse_current.LeftButton == ButtonState.Released && mouse_previous.LeftButton == ButtonState.Pressed)
+            {
+                Vector2 destination;
+                destination.X = mouse_current.X;
+                destination.Y = mouse_current.Y;
+                player.MoveTo(destination);
+            }
 
             base.Update(gameTime);
         }
@@ -131,7 +142,7 @@ namespace happyville
             GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
-            test_item.Draw();
+            player.Draw();
 
             base.Draw(gameTime);
         }

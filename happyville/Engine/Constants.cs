@@ -7,7 +7,7 @@ namespace happyville
 {
     public static class Constants
     {
-        public const float SPEED = 1;
+        public const float SPEED = 20;
     }
 
     // Collision detection enum

@@ -77,7 +77,8 @@ namespace happyville
 
                 // Check for overshoot
                 float target_d = Vector2.Distance(position, destination);
-                float speed_d = speed * Constants.SPEED;                                            // TODO: multiply in time passed
+                float elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                float speed_d = speed * Constants.SPEED * elapsedTime;
 
                 // If we have overshot, or just arrived, set our position to 
                 // destination and remove the destination.
