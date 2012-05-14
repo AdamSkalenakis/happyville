@@ -1,5 +1,5 @@
 ﻿/************************************************************************************
- * Player.cs        An Entity controlled by a user.
+ * Shape.cs         Shape used for bounding boxes
  * Project		    happyville - a social game involving people and monsters and 
  *                  their interactions.
  * Author		    Sarah Herzog 
@@ -11,7 +11,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -23,42 +22,33 @@ using Microsoft.Xna.Framework.Media;
 
 namespace happyville
 {
-    class Player : Entity
+    abstract class Shape
     {
-
         #region Data Members
-        protected string status = null;     // Status effect on this player                         !!! TODO: Change to pointers to effect objects, possibly an array or linked list
-        protected Item target = null;       // Pointer to current target
-        protected string mode = "Normal";   // Current character mode (Normal/Sprint/Focus)         !!! TODO: Change to enum
+        public Vector2 position = Vector2.Zero;          // The position of the item in the game level
+        public float rotation = 0;                       // Angle of rotation (radians)
         #endregion
-        
-        #region Initialization
-        /****************************************************************************
-         * Constructor  Creates a new object
-         * Arguments    ---
-         * Returns      ---
-         ****************************************************************************/
-        public Player()
-        {
-            layer = 9;
-            position = new Vector2(200, 200);
-        }
 
+        #region Collision
         /****************************************************************************
-         * LoadContent()    LoadContent will be called once per game and is the place 
-         *                  to load all of your content.
-         * Arguments        ---
+         * IsColliding()    Checks if this Shape is colliding with another.
+         * Arguments        Circle other - the other shape to check for collision
          * Returns          ---
          ****************************************************************************/
-        public override void LoadContent(GraphicsDevice GraphicsDevice, ContentManager Content, SpriteBatch SpriteBatch)
+        public virtual bool IsColliding(Circle other)
         {
-            // Load texture for this Player
-            graphic = Content.Load<Texture2D>("images/player");
-            width = graphic.Width;
-            height = graphic.Height;
-
-            // Call parent's LoadContent
-            base.LoadContent(GraphicsDevice, Content, SpriteBatch);
+            // This should never be invoked.
+            return false;
+        }
+        /****************************************************************************
+         * IsColliding()    Checks if this Shape is colliding with another.
+         * Arguments        Rectangle other - the other shape to check for collision
+         * Returns          ---
+         ****************************************************************************/
+        public virtual bool IsColliding(Rectangle other)
+        {
+            // This should never be invoked.
+            return false;
         }
         #endregion
     }

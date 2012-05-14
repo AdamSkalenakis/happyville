@@ -1,6 +1,6 @@
 /************************************************************************************
  * Game.cs          Contains main game loops and logic
- * Project    	    happyville - a social game involving people and monsters and 
+ * Project		    happyville - a social game involving people and monsters and 
  *                  their interactions.
  * Author		    Sarah Herzog 
  * Version		    0.1
@@ -26,9 +26,8 @@ namespace happyville
     {
         #region Data Members
         GraphicsDeviceManager graphics;             // Manager for graphiocs
-        SpriteBatch spriteBatch;                    // Used to draw to the screen
-        Entity player;                              // Instance to test classes                         !!! TODO: Remove.
-        MouseState mouse_current, mouse_previous;   // Mouse states for mouse control
+
+        Level test_level;                           // Level to test the game TODO: Remove
         #endregion
 
         #region Initialization
@@ -47,13 +46,8 @@ namespace happyville
             graphics.PreferredBackBufferWidth = 1152;
             graphics.PreferredBackBufferHeight = 864;
 
-            // Test Item                                                                        !!! TODO: Remove.
-            player = new Player();
-            // Set a destination
-            Vector2 destination;
-            destination.X = 1152;
-            destination.Y = 864;
-            player.MoveTo(destination);
+            // Initiallize Level
+            test_level = new Level();
         }
 
         /****************************************************************************
@@ -81,11 +75,8 @@ namespace happyville
          ****************************************************************************/
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
-            player.LoadContent(GraphicsDevice, Content);
+            // Load Level Content
+            test_level.LoadContent(GraphicsDevice, Content);
         }
 
         /****************************************************************************
@@ -113,25 +104,11 @@ namespace happyville
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
-            player.Update(gameTime);
+            // Mouse Update
+            MouseHandler.UpdateState();
 
-            // Mouse Movement
-            mouse_previous = mouse_current;
-            mouse_current = Mouse.GetState();
-            if (mouse_current.RightButton == ButtonState.Released && mouse_previous.RightButton == ButtonState.Pressed)
-            {
-                if (!(mouse_current.X < 0
-                    || mouse_current.X > GraphicsDevice.Viewport.Width
-                    || mouse_current.Y < 0
-                    || mouse_current.Y > GraphicsDevice.Viewport.Height))
-                {
-                    Vector2 destination;
-                    destination.X = mouse_current.X;
-                    destination.Y = mouse_current.Y;
-                    player.MoveTo(destination);
-                }
-            }
+            // Update Level
+            test_level.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -147,8 +124,8 @@ namespace happyville
         {
             GraphicsDevice.Clear(Color.White);
 
-            // TODO: Add your drawing code here
-            player.Draw();
+            // Draw Level
+            test_level.Draw(gameTime);
 
             base.Draw(gameTime);
         }

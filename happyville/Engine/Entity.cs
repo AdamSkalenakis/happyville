@@ -30,6 +30,8 @@ namespace happyville
         protected Boolean moveable = true;              // Whether the entity moves                 !!! TODO: Might want to move up to Item
         protected string type = "Human";                // Type of entity                           !!! TODO: Might be unnecessary
         protected Vector2 destination = Vector2.Zero;   // Current destination
+        protected Vector2 direction = Vector2.Zero;     // Unit vector holding direction to travel
+        protected Vector2 velocity = Vector2.Zero;      // Direction vector scaled with speed
         protected bool has_destination = false;         // Whether the character has a destination
         protected int speed = 5;                        // Relative speed of this entity
         #endregion
@@ -45,7 +47,7 @@ namespace happyville
             layer = 8;
             interact = "All";
             visible = "In Sight";
-            collides = collision.NONENTITY;
+            collides = true;
         }
         #endregion
 
@@ -59,6 +61,21 @@ namespace happyville
         {
             has_destination = true;
             destination = location;
+
+            // Create a direction vector
+            Vector2 distance = Vector2.Add(destination, Vector2.Negate(position));
+            direction = Vector2.Normalize(distance); // Unit vector
+            velocity = Vector2.Multiply(direction, speed * Constants.SPEED);
+        }
+
+        /****************************************************************************
+         * Stop()           Stops the entities movement.
+         * Arguments        ---
+         * Returns          ---
+         ****************************************************************************/
+        public void Stop()
+        {
+            has_destination = false;
         }
         #endregion
 
@@ -80,6 +97,18 @@ namespace happyville
                 float elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
                 float speed_d = speed * Constants.SPEED * elapsedTime;
 
+                Vector2 distance = Vector2.Add(destination, Vector2.Negate(position));
+                direction = Vector2.Normalize(distance); // Unit vector
+                velocity = Vector2.Multiply(direction, speed_d);
+                Vector2 vel = velocity;
+
+                // Are we colliding? If so, change velocity vector
+                if (is_colliding)
+                {
+                    vel = Vector2.Multiply(collision, (Vector2.Dot(vel, collision) / Vector2.Dot(collision, collision)));
+                }
+
+
                 // If we have overshot, or just arrived, set our position to 
                 // destination and remove the destination.
                 // If we have arrived at our destination, remove it.
@@ -92,14 +121,7 @@ namespace happyville
                 // Otherwise, move us closer.
                 else
                 {
-                    // Create a direction vector
-                    Vector2 distance = Vector2.Add(destination, Vector2.Negate(position));
-                    Vector2 direction = Vector2.Normalize(distance); // Unit vector
-
-                    // Scale it with speed
-                    Vector2 velocity = Vector2.Multiply(direction, speed_d);
-
-                    position = Vector2.Add(position, velocity);
+                    position = Vector2.Add(position, vel);
                 }
             }
 

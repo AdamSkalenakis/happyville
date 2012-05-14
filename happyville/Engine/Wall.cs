@@ -1,5 +1,5 @@
 ﻿/************************************************************************************
- * Player.cs        An Entity controlled by a user.
+ * Wall.cs          A rectangle which blocks passage through it.
  * Project		    happyville - a social game involving people and monsters and 
  *                  their interactions.
  * Author		    Sarah Herzog 
@@ -23,13 +23,10 @@ using Microsoft.Xna.Framework.Media;
 
 namespace happyville
 {
-    class Player : Entity
+    class Wall : Item
     {
 
-        #region Data Members
-        protected string status = null;     // Status effect on this player                         !!! TODO: Change to pointers to effect objects, possibly an array or linked list
-        protected Item target = null;       // Pointer to current target
-        protected string mode = "Normal";   // Current character mode (Normal/Sprint/Focus)         !!! TODO: Change to enum
+        #region Data Members              
         #endregion
         
         #region Initialization
@@ -38,10 +35,15 @@ namespace happyville
          * Arguments    ---
          * Returns      ---
          ****************************************************************************/
-        public Player()
+        public Wall()
         {
-            layer = 9;
-            position = new Vector2(200, 200);
+            layer = 2;
+            visible = "Always";
+            collides = true;
+            width = 20;
+            height = 5;
+            facing = 0.0f;
+            position = new Vector2(100, 100);
         }
 
         /****************************************************************************
@@ -53,13 +55,31 @@ namespace happyville
         public override void LoadContent(GraphicsDevice GraphicsDevice, ContentManager Content, SpriteBatch SpriteBatch)
         {
             // Load texture for this Player
-            graphic = Content.Load<Texture2D>("images/player");
-            width = graphic.Width;
-            height = graphic.Height;
+            graphic = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            graphic.SetData(new[] { Color.Black });
 
             // Call parent's LoadContent
             base.LoadContent(GraphicsDevice, Content, SpriteBatch);
         }
         #endregion
+
+        #region Draw
+        /****************************************************************************
+         * Draw()       This is called when the Item should draw itself.
+         * Arguments    ---
+         * Returns      ---
+         ****************************************************************************/
+        public override void Draw(GameTime gameTime)
+        {
+            if (graphic == null) return;
+            // Draw the sprite.
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
+            spriteBatch.Draw(graphic, graphic_position, null, Color.Black,
+              (float)facing, Vector2.Zero, new Vector2(width, height),
+              SpriteEffects.None, 0);
+            spriteBatch.End();
+        }
+        #endregion
+
     }
 }
