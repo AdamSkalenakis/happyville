@@ -25,6 +25,7 @@ namespace happyville
 {
     public static class Constants
     {
-        public const float SPEED = 20;
+        public const int SPEED = 20;
+        public const double ANG_SPEED = 2 * Math.PI;
     }
 }

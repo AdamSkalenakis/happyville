@@ -43,6 +43,7 @@ namespace happyville
             // Default false
             return false;
         }
+
         /****************************************************************************
          * IsColliding()    Checks if this Shape is colliding with another.
          * Arguments        Shape other - the other shape to check for collision
@@ -50,12 +51,12 @@ namespace happyville
          ****************************************************************************/
         public override bool IsColliding(Rectangle other)
         {
-            // If position is inside other, return true
-            if (PointInRectangle(position, other)
+            // If center of circle is inside the rectangle, return true
+            if (PointInRectangle(position, other))
                 return true;
 
-
-            
+            // If the rectangle's lines intersect the circle, return true
+            // TODO
 
             // Default false
             return false;
