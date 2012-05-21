@@ -51,8 +51,11 @@ namespace happyville
         public override bool IsColliding(Rectangle other)
         {
             // If position is inside other, return true
+            if (PointInRectangle(position, other)
+                return true;
 
-            // If any of the lines of other are inside this, return true
+
+            
 
             // Default false
             return false;
