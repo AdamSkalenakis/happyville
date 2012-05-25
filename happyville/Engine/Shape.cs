@@ -40,6 +40,7 @@ namespace happyville
             // This should never be invoked.
             return false;
         }
+
         /****************************************************************************
          * IsColliding()    Checks if this Shape is colliding with another.
          * Arguments        Rectangle other - the other shape to check for collision
@@ -50,6 +51,42 @@ namespace happyville
             // This should never be invoked.
             return false;
         }
+
+        /****************************************************************************
+         * PointInRectangle()   Checks if a point is inside the rectangle.
+         * Arguments            Vector2 point - the point to check
+         *                      Rectangle rect - the rectangle to check
+         * Returns              bool - true if point is in rect, else false
+         ****************************************************************************/
+        public virtual bool PointInRectangle(Vector2 point, Rectangle rect)
+        {
+            // TODO: fix for angle
+            if ((point.X > rect.position.X - 0.5 * rect.width) &&
+                (point.X < rect.position.X + 0.5 * rect.width) &&
+                (point.Y < rect.position.Y + 0.5 * rect.height) &&
+                (point.Y > rect.position.Y - 0.5 * rect.height))
+                return true;
+
+            // Default false
+            return false;
+        }
+
+        /****************************************************************************
+         * IntersectCircle()    Checks if the line intersects the circle.
+         * Arguments            Circle circ - the circle to check
+         *                      Vector2 A - the beginning of the line
+         *                      Vector2 B - the end of the line
+         * Returns              bool - true if point is in rect, else false
+         ****************************************************************************/
+        public virtual bool IntersectCircle(Circle circ, Vector2 A, Vector2 B)
+        {
+
+
+            // Default false
+            return false;
+        }
+
         #endregion
+
     }
 }
