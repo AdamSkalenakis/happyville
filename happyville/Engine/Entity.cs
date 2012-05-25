@@ -79,7 +79,7 @@ namespace happyville
         public void Face(Vector2 location)
         {
             has_face_change = true;
-            face_target = Math.Atan2(position.Y - location.Y, position.Y - location.Y);
+            face_target = Math.Atan2(position.Y - location.Y+2, position.X - location.X+2);
         }
 
         /****************************************************************************
@@ -141,7 +141,7 @@ namespace happyville
                 }
 
                 // Update facing
-                double target_f = face_target - facing;
+                double target_f = MathHelper.WrapAngle((float)face_target - (float)facing);
                 double speed_f = turn_speed * Constants.ANG_SPEED * elapsedTime;
 
                 // If we have overshot, or just arrived, set our position to 
@@ -156,8 +156,14 @@ namespace happyville
                 // Otherwise, move us closer.
                 else
                 {
-
-                    facing += speed_f;
+                    if (target_f < 0)
+                    {
+                        facing -= speed_f;
+                    }
+                    else
+                    {
+                        facing += speed_f;
+                    }
                 }
 
             }
