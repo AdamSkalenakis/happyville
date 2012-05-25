@@ -31,9 +31,9 @@ namespace happyville
         // Fields
         protected Texture2D graphic = null;                 // Graphic for this Item
         protected Vector2 position = Vector2.Zero;          // The position of the item in the game level
-        protected float width = 5;                          // Width of the item (bounding box)
-        protected float height = 5;                         // Height of the item (bounding box)
-        protected float facing = 0;                         // Angle of facing (radians)
+        protected double width = 5;                          // Width of the item (bounding box)
+        protected double height = 5;                         // Height of the item (bounding box)
+        protected double facing = 0;                         // Angle of facing (radians)
         protected bool collides = false;                    // What the object collides with
         protected bool is_colliding = false;                // Whether the item is currently colliding
         protected string interact = "None";                 // What can interact with the object        !!! TODO: Decide on data type for this
@@ -105,7 +105,7 @@ namespace happyville
             // Draw the sprite.
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
             spriteBatch.Draw(graphic, graphic_position, null, Color.White,
-              facing, Vector2.Zero, Vector2.One,
+              (float)facing, Vector2.Zero, Vector2.One,
               SpriteEffects.None, 0);
             spriteBatch.End(); 
         }

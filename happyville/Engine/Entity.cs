@@ -34,6 +34,9 @@ namespace happyville
         protected Vector2 velocity = Vector2.Zero;      // Direction vector scaled with speed
         protected bool has_destination = false;         // Whether the character has a destination
         protected int speed = 5;                        // Relative speed of this entity
+        protected bool has_face_change = false;         // Whether the character has a changing face
+        protected double face_target = 0;               // Target facing value;
+        protected int turn_speed = 1;                   // Relative turning speed of this entity
         #endregion
         
         #region Initialization
@@ -53,7 +56,7 @@ namespace happyville
 
         #region Movement
         /****************************************************************************
-         * MoveTo()         Sets an entities destination.
+         * MoveTo()         Sets an entity's destination.
          * Arguments        Vector2 location
          * Returns          ---
          ****************************************************************************/
@@ -66,6 +69,17 @@ namespace happyville
             Vector2 distance = Vector2.Add(destination, Vector2.Negate(position));
             direction = Vector2.Normalize(distance); // Unit vector
             velocity = Vector2.Multiply(direction, speed * Constants.SPEED);
+        }
+
+        /****************************************************************************
+         * Face()           Sets an entity's facing.
+         * Arguments        Vector2 location
+         * Returns          ---
+         ****************************************************************************/
+        public void Face(Vector2 location)
+        {
+            has_face_change = true;
+            face_target = Math.Atan2(position.Y - location.Y, position.Y - location.Y);
         }
 
         /****************************************************************************
@@ -108,7 +122,6 @@ namespace happyville
                     vel = Vector2.Multiply(collision, (Vector2.Dot(vel, collision) / Vector2.Dot(collision, collision)));
                 }
 
-
                 // If we have overshot, or just arrived, set our position to 
                 // destination and remove the destination.
                 // If we have arrived at our destination, remove it.
@@ -116,17 +129,43 @@ namespace happyville
                 {
                     position = destination;
                     has_destination = false;
+                    has_face_change = false;
                     destination = Vector2.Zero;
+                    face_target = 0;
                 }
                 // Otherwise, move us closer.
                 else
                 {
                     position = Vector2.Add(position, vel);
+                    Face(destination);
                 }
+
+                // Update facing
+                double target_f = face_target - facing;
+                double speed_f = turn_speed * Constants.ANG_SPEED * elapsedTime;
+
+                // If we have overshot, or just arrived, set our position to 
+                // destination and remove the destination.
+                // If we have arrived at our destination, remove it.
+                if (speed_f >= Math.Abs(target_f))
+                {
+                    facing = face_target;
+                    has_face_change = false;
+                    face_target = 0;
+                }
+                // Otherwise, move us closer.
+                else
+                {
+
+                    facing += speed_f;
+                }
+
             }
 
             base.Update(gameTime);
         }
         #endregion
+
+
     }
 }

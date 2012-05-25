@@ -75,7 +75,7 @@ namespace happyville
             // Draw the sprite.
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
             spriteBatch.Draw(graphic, graphic_position, null, Color.Black,
-              (float)facing, Vector2.Zero, new Vector2(width, height),
+              (float)facing, Vector2.Zero, new Vector2((float)width, (float)height),
               SpriteEffects.None, 0);
             spriteBatch.End();
         }
