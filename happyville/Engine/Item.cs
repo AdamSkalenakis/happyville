@@ -50,10 +50,12 @@ namespace happyville
                 if (graphic == null) return position;
                 else
                 {
+                    double length = 5/(Math.Sqrt(2));
+                    float llength = (float)length;
                     Vector2 temp = Vector2.Zero;
-                    temp.Y = graphic.Height/2;
-                    temp.X = graphic.Width/2;
-                    return position - temp;
+                    temp.Y = llength * (float)Math.Sin(facing-3*Math.PI/4);
+                    temp.X = llength * (float)Math.Cos(facing-3*Math.PI/4);
+                    return position + temp;
                 }
             }
         }
