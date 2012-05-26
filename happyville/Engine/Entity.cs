@@ -131,38 +131,37 @@ namespace happyville
                     has_destination = false;
                     has_face_change = false;
                     destination = Vector2.Zero;
-                    face_target = 0;
                 }
                 // Otherwise, move us closer.
                 else
                 {
                     position = Vector2.Add(position, vel);
                     Face(destination);
-                }
 
-                // Update facing
-                double target_f = MathHelper.WrapAngle((float)face_target - (float)facing);
-                double speed_f = turn_speed * Constants.ANG_SPEED * elapsedTime;
+                    // Update facing
+                    double target_f = MathHelper.WrapAngle((float)face_target - (float)facing);
+                    double speed_f = turn_speed * Constants.ANG_SPEED * elapsedTime;
 
-                // If we have overshot, or just arrived, set our position to 
-                // destination and remove the destination.
-                // If we have arrived at our destination, remove it.
-                if (speed_f >= Math.Abs(target_f))
-                {
-                    facing = face_target;
-                    has_face_change = false;
-                    face_target = 0;
-                }
-                // Otherwise, move us closer.
-                else
-                {
-                    if (target_f < 0)
+                    // If we have overshot, or just arrived, set our position to 
+                    // destination and remove the destination.
+                    // If we have arrived at our destination, remove it.
+                    if (speed_f >= Math.Abs(target_f))
                     {
-                        facing -= speed_f;
+                        facing = face_target;
+                        has_face_change = false;
+                        face_target = 0;
                     }
+                    // Otherwise, move us closer.
                     else
                     {
-                        facing += speed_f;
+                        if (target_f < 0)
+                        {
+                            facing -= speed_f;
+                        }
+                        else
+                        {
+                            facing += speed_f;
+                        }
                     }
                 }
 
