@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SpriteEditorScene xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Sprite>
+    <X>8.222567</X>
+    <Y>9.926339</Y>
+    <RotationZ>2.12284446</RotationZ>
+    <Name>redball1</Name>
+    <Texture>redball.bmp</Texture>
+    <ConstantPixelSize>0</ConstantPixelSize>
+  </Sprite>
+  <Sprite>
+    <X>0.296312362</X>
+    <Y>-0.370385736</Y>
+    <Name>redball2</Name>
+    <Texture>redball.bmp</Texture>
+    <ConstantPixelSize>0</ConstantPixelSize>
+  </Sprite>
+  <Sprite>
+    <X>10.7411919</X>
+    <Y>-0.222231388</Y>
+    <Name>redball3</Name>
+    <Texture>redball.bmp</Texture>
+    <ConstantPixelSize>0</ConstantPixelSize>
+  </Sprite>
+  <Camera>
+    <X>0</X>
+    <Y>0</Y>
+    <Z>-40</Z>
+    <Orthogonal>false</Orthogonal>
+    <OrthogonalHeight>600</OrthogonalHeight>
+    <OrthogonalWidth>-1</OrthogonalWidth>
+    <NearClipPlane>1</NearClipPlane>
+    <FarClipPlane>1000</FarClipPlane>
+  </Camera>
+  <PixelSize>0</PixelSize>
+  <AssetsRelativeToSceneFile>true</AssetsRelativeToSceneFile>
+  <CoordinateSystem>LeftHanded</CoordinateSystem>
+</SpriteEditorScene>

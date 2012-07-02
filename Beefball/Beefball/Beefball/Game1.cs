@@ -12,9 +12,9 @@ using FlatRedBall;
 using FlatRedBall.Graphics;
 using FlatRedBall.Utilities;
 
-using happyvilleFRB.Screens;
+using Beefball.Screens;
 
-namespace happyvilleFRB
+namespace Beefball
 {
     public class Game1 : Microsoft.Xna.Framework.Game
     {
@@ -36,7 +36,12 @@ namespace happyvilleFRB
             FlatRedBallServices.InitializeFlatRedBall(this, graphics);
 			GlobalContent.Initialize();
 
-			Screens.ScreenManager.Start(typeof(happyvilleFRB.Screens.PlayArea).FullName);
+            if (FlatRedBall.Input.InputManager.Xbox360GamePads[0].IsConnected == false)
+            {
+                FlatRedBall.Input.InputManager.Xbox360GamePads[0].CreateDefaultButtonMap();
+            }
+
+			Screens.ScreenManager.Start(typeof(Beefball.Screens.GameScreen).FullName);
 
             base.Initialize();
         }

@@ -23,10 +23,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FlatRedBall">
-      <HintPath>..\happyvilleFRB\Libraries\Xna4Pc\FlatRedBall.dll</HintPath>
+      <HintPath>..\Beefball\Libraries\Xna4Pc\FlatRedBall.dll</HintPath>
     </Reference>
     <Reference Include="FlatRedBall.Content">
-      <HintPath>..\happyvilleFRB\Libraries\Xna4Pc\FlatRedBall.Content.dll</HintPath>
+      <HintPath>..\Beefball\Libraries\Xna4Pc\FlatRedBall.Content.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.EffectImporter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL">
       <Private>False</Private>
@@ -48,21 +48,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Entities\Character\redball.bmp">
+    <None Include="Entities\PlayerBall\MainSprite.scnx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>redball</Name>
+      <Name>MainSprite</Name>
     </None>
-    <None Include="Entities\Character\CharFile.scnx">
+    <None Include="Entities\PlayerBall\moveentirespline.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>CharFile</Name>
+      <Name>moveentirespline</Name>
     </None>
-    <None Include="Screens\PlayArea\redball.bmp">
+    <None Include="Screens\GameScreen\axisalignedcube.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>redball</Name>
+      <Name>axisalignedcube</Name>
     </None>
-    <None Include="Screens\PlayArea\SceneFile.scnx">
+    <None Include="Screens\GameScreen\drawpolygon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>SceneFile</Name>
+      <Name>drawpolygon</Name>
+    </None>
+    <None Include="Screens\GameScreen\editsphere.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>editsphere</Name>
+    </None>
+    <None Include="Screens\GameScreen\TestLevel.scnx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TestLevel</Name>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
