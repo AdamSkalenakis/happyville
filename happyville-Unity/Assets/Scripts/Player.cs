@@ -1,6 +1,6 @@
 // ************************************************************************ 
-// File Name:   PlayerMovement.cs 
-// Purpose:     Contains player movement methods and  
+// File Name:   Player.cs 
+// Purpose:     Contains methods governing a player  
 // Project:     happyville - social game involving people and monsters 
 //				and their interactions.
 // Author:      Sarah Herzog  
@@ -18,14 +18,25 @@ using System.Collections;
 // ************************************************************************ 
 // Class: PlayerMovement 
 // ************************************************************************ 
-public class PlayerMovement : MonoBehaviour {
+public class Player : MonoBehaviour {
       
 	
     // ********************************************************************
     // Exposed Data Members 
     // ********************************************************************
+	
+	// Max Linear Speed
     public float m_maxLinearSpeed;
+	
+	// Max Angular Speed
 	public float m_maxAngularSpeed;
+	
+	// Mouse Sensitivity
+	[Range (0, 10)]
+	public float m_mouseSensitivity;
+	
+	// TEMP
+	public Vector2 faceDirection;
 
 	
     // ********************************************************************
@@ -40,8 +51,7 @@ public class PlayerMovement : MonoBehaviour {
     // Function:	Start()
     // Purpose:     Run when new instance of the object is created.
     // ********************************************************************
-	void Start () {
-		
+	void Start () {		
 		// Set initial speeds to max values
 		m_currentLinearSpeed = m_maxLinearSpeed;
 		m_currentAngularSpeed = m_maxAngularSpeed;
@@ -77,6 +87,9 @@ public class PlayerMovement : MonoBehaviour {
 		// Scale to speed and set velocity
 		moveVelocity = moveDirection * m_currentLinearSpeed;
 		rigidbody.velocity = moveVelocity;
+		
+		// Move the camera to this location
+		GameObject.Find("Main Camera").transform.position = transform.position;
 	}
 	
 	
@@ -87,23 +100,31 @@ public class PlayerMovement : MonoBehaviour {
 	private void ProcessFacing()
 	{
 		// Define local variables
-		Vector2 moveDirection;
+		//Vector2 faceDirection;
 		float targetAngle, angleDistanceLeft, angleDistanceRight, angleDistance, angleDirection;
 		
+		// Get target based on left-click
+		if (Input.GetButton("Face"))
+		{
+			faceDirection = Input.mousePosition - (new Vector3(Screen.width,Screen.height,0.0f))/2.0f;
+			//faceDirection.Normalize();
+			targetAngle = Mathf.Atan2(faceDirection.y, faceDirection.x)*(180.0f/Mathf.PI);
+		}
 		// Get target based on movement
-		moveDirection = new Vector2(
-			Input.GetAxis("Horizontal"), 
-			Input.GetAxis("Vertical")
-		);
-		moveDirection.Normalize();
-		targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x)*(180.0f/Mathf.PI);
+		else
+		{
+			faceDirection = new Vector2(
+				Input.GetAxis("Horizontal"), 
+				Input.GetAxis("Vertical")
+			);
+			faceDirection.Normalize();
+			targetAngle = Mathf.Atan2(faceDirection.y, faceDirection.x)*(180.0f/Mathf.PI);
+		}
 		if (targetAngle < 0 ) targetAngle += 360.0f;
 		if (targetAngle > 360.0f ) targetAngle -= 360.0f;
 		
-		// TODO: Get target based on left-click
-		
-		// Turn toward target
-		if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) 
+		// Turn toward target if we're receiving input
+		if (Input.GetButton("Face") || Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) 
 		{
 			// Determine angleDirection and angleDistance based on targetAngle and current m_facing
 			angleDistanceLeft = targetAngle - m_facing;
