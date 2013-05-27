@@ -16,7 +16,7 @@ using System.Collections;
 
 
 // ************************************************************************ 
-// Class: PlayerMovement 
+// Class: Player 
 // ************************************************************************ 
 public class Player : MonoBehaviour {
       
@@ -34,9 +34,6 @@ public class Player : MonoBehaviour {
 	// Mouse Sensitivity
 	[Range (0, 10)]
 	public float m_mouseSensitivity;
-	
-	// TEMP
-	public Vector2 faceDirection;
 
 	
     // ********************************************************************
@@ -100,14 +97,13 @@ public class Player : MonoBehaviour {
 	private void ProcessFacing()
 	{
 		// Define local variables
-		//Vector2 faceDirection;
+		Vector2 faceDirection;
 		float targetAngle, angleDistanceLeft, angleDistanceRight, angleDistance, angleDirection;
 		
 		// Get target based on left-click
 		if (Input.GetButton("Face"))
 		{
 			faceDirection = Input.mousePosition - (new Vector3(Screen.width,Screen.height,0.0f))/2.0f;
-			//faceDirection.Normalize();
 			targetAngle = Mathf.Atan2(faceDirection.y, faceDirection.x)*(180.0f/Mathf.PI);
 		}
 		// Get target based on movement
@@ -117,7 +113,6 @@ public class Player : MonoBehaviour {
 				Input.GetAxis("Horizontal"), 
 				Input.GetAxis("Vertical")
 			);
-			faceDirection.Normalize();
 			targetAngle = Mathf.Atan2(faceDirection.y, faceDirection.x)*(180.0f/Mathf.PI);
 		}
 		if (targetAngle < 0 ) targetAngle += 360.0f;
