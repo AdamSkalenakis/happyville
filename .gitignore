@@ -1,4 +1,10 @@
 #################
+## Unity
+#################
+happyville-Unity/Library/
+happyville-Unity/Temp/
+
+#################
 ## Eclipse
 #################
 
