@@ -60,8 +60,13 @@ public class Player : MonoBehaviour {
     // Purpose:		Called once per frame.
     // ********************************************************************
 	void Update () {
-		ProcessMovement();
-		ProcessFacing();
+		
+		// Get input for movement and facing
+		if(networkView.isMine)
+		{
+			ProcessMovement();
+			ProcessFacing();
+		}
 	}
 	
 	

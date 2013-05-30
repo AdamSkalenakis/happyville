@@ -66,7 +66,8 @@ public class NetworkManager : MonoBehaviour
     // ********************************************************************
 	void Start () 
 	{
-		
+		// Set up the network object to not be destroyed on load
+		DontDestroyOnLoad (gameObject);
 	}
 	
 	
@@ -76,13 +77,17 @@ public class NetworkManager : MonoBehaviour
     // ********************************************************************
 	void Update () 
 	{
-		// Send a request for a host list update if it is time
-		m_timeSinceLastRefresh += Time.deltaTime;
-		if (m_autoRefreshHostList && m_timeSinceLastRefresh > m_hostListRefreshTime)
+		// Only update host select GUI if not client or server
+		if (!Network.isClient && !Network.isServer)
 		{
-			Debug.Log("Automatically refreshing host list.");
-			m_timeSinceLastRefresh = 0.0f;
-			RefreshHostList();
+			// Send a request for a host list update if it is time
+			m_timeSinceLastRefresh += Time.deltaTime;
+			if (m_autoRefreshHostList && m_timeSinceLastRefresh > m_hostListRefreshTime)
+			{
+				Debug.Log("Automatically refreshing host list.");
+				m_timeSinceLastRefresh = 0.0f;
+				RefreshHostList();
+			}
 		}
 	}
 	
@@ -93,63 +98,66 @@ public class NetworkManager : MonoBehaviour
     // ********************************************************************
 	void OnGUI () 
 	{
-		
-		// Button: Host Game
-		if (GUI.Button (new Rect (
-			Screen.width/2 - (m_buttonWidth*3/2 + m_buttonPadding), 
-			m_buttonY, m_buttonWidth, m_buttonHeight), "Host Game")) 
+		// Only display host select GUI if not client or server
+		if (!Network.isClient && !Network.isServer)
 		{
-			Debug.Log("\"Host Game\" clicked");
-			StartHost();
-		}
-		
-		// Button: Refresh Host List
-		if (GUI.Button (new Rect (
-			Screen.width/2 - (m_buttonWidth/2), 
-			m_buttonY, m_buttonWidth, m_buttonHeight), "Refresh")) 
-		{
-			Debug.Log("\"Refresh\" clicked");
-			RefreshHostList();
-		}
-		
-		// Button: Quit
-		if (GUI.Button (new Rect (
-			Screen.width/2 + (m_buttonWidth/2 + m_buttonPadding), 
-			m_buttonY, m_buttonWidth, m_buttonHeight), "Quit")) 
-		{
-			Debug.Log("\"Quit\" clicked");
-			Application.Quit();
-		}
-		
-		// Buttons: Host List
-		// TODO: Modify to allow scrolling ++++++++++++++++++++++++++++++++
-		// TODO: Display more info about each game ++++++++++++++++++++++++
-		// TODO: Password support +++++++++++++++++++++++++++++++++++++++++
-		for (int i = 0; i < m_numHostsListed; ++i)
-		{
-			// Get host name from list
-			string hostName, hostComment;
-			if (i < m_hostList.Length) 
+			// Button: Host Game
+			if (GUI.Button (new Rect (
+				Screen.width/2 - (m_buttonWidth*3/2 + m_buttonPadding), 
+				m_buttonY, m_buttonWidth, m_buttonHeight), "Host Game")) 
 			{
-				hostName = m_hostList[i].gameName;
-				hostComment = m_hostList[i].comment;
-			}
-			else 
-			{
-				hostName = "";
-				hostComment = "";
+				Debug.Log("\"Host Game\" clicked");
+				StartHost();
 			}
 			
-			// Button: Host
+			// Button: Refresh Host List
 			if (GUI.Button (new Rect (
-				Screen.width/2 - m_hostListWidth/2, 
-				m_hostListY + i * (m_hostListHeight + m_hostListPadding), 
-				m_hostListWidth, m_hostListHeight), hostName+"\n"+hostComment)) 
+				Screen.width/2 - (m_buttonWidth/2), 
+				m_buttonY, m_buttonWidth, m_buttonHeight), "Refresh")) 
 			{
-				Debug.Log("Host \""+hostName+"\" clicked");
-				if (i < m_hostList.Length)
+				Debug.Log("\"Refresh\" clicked");
+				RefreshHostList();
+			}
+			
+			// Button: Quit
+			if (GUI.Button (new Rect (
+				Screen.width/2 + (m_buttonWidth/2 + m_buttonPadding), 
+				m_buttonY, m_buttonWidth, m_buttonHeight), "Quit")) 
+			{
+				Debug.Log("\"Quit\" clicked");
+				Application.Quit();
+			}
+			
+			// Buttons: Host List
+			// TODO: Modify to allow scrolling ++++++++++++++++++++++++++++++++
+			// TODO: Display more info about each game ++++++++++++++++++++++++
+			// TODO: Password support +++++++++++++++++++++++++++++++++++++++++
+			for (int i = 0; i < m_numHostsListed; ++i)
+			{
+				// Get host name from list
+				string hostName, hostComment;
+				if (i < m_hostList.Length) 
 				{
-					ConnectToHost(m_hostList[i]);
+					hostName = m_hostList[i].gameName;
+					hostComment = m_hostList[i].comment;
+				}
+				else 
+				{
+					hostName = "";
+					hostComment = "";
+				}
+				
+				// Button: Host
+				if (GUI.Button (new Rect (
+					Screen.width/2 - m_hostListWidth/2, 
+					m_hostListY + i * (m_hostListHeight + m_hostListPadding), 
+					m_hostListWidth, m_hostListHeight), hostName+"\n"+hostComment)) 
+				{
+					Debug.Log("Host \""+hostName+"\" clicked");
+					if (i < m_hostList.Length)
+					{
+						ConnectToHost(m_hostList[i]);
+					}
 				}
 			}
 		}
@@ -195,7 +203,7 @@ public class NetworkManager : MonoBehaviour
 		        break;
 		    case MasterServerEvent.RegistrationSucceeded:
 		        Debug.Log("Registration of host succeeded.");
-				// TODO: Move to lobby screen +++++++++++++++++++++++++++++
+				StartGame();
 		        break;
 		    default:
 		        Debug.Log("Unknown master host event.");
@@ -308,7 +316,7 @@ public class NetworkManager : MonoBehaviour
 		        break;
 		    case NetworkConnectionError.NoError:
 		        Debug.Log("Connected to host.");
-		        // TODO: Move to lobby screen +++++++++++++++++++++++++++++
+				StartGame();
 		        break;
 		    case NetworkConnectionError.RSAPublicKeyMismatch:
 		        Debug.Log("Unable to connect to host: RSA public key does not match host.");
@@ -324,5 +332,16 @@ public class NetworkManager : MonoBehaviour
 		}
 		
 	}
+	
+	
+    // ********************************************************************
+    // Function:	StartGame()
+    // Purpose:     Prepares and loads the next scene
+    // ********************************************************************
+	private void StartGame()
+	{
+		Application.LoadLevel("Prototype");
+	}
+	
 	
 }
