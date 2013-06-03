@@ -152,6 +152,10 @@
     <Compile Include="Assets\Orthello\Standard Assets\OT\_Base\OTSounds.cs" />
     <Compile Include="Assets\Orthello\Standard Assets\OT\_Base\OTTimeCycle.cs" />
     <Compile Include="Assets\Orthello\Standard Assets\OT\_Base\OTTouch.cs" />
+    <Compile Include="Assets\Scripts\Buttons\Button.cs" />
+    <Compile Include="Assets\Scripts\Buttons\ButtonQuit.cs" />
+    <Compile Include="Assets\Scripts\Buttons\ButtonScreenChange.cs" />
+    <Compile Include="Assets\Scripts\Buttons\ButtonText.cs" />
     <Compile Include="Assets\Scripts\NetworkManager.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <None Include="Assets\Orthello\Examples\0 - Simple Examples\TextSprites\lorem.txt" />
@@ -161,6 +165,7 @@
     <None Include="Assets\Orthello\Examples\0 - Simple Examples\TextSprites\orthello-font-30.txt" />
     <None Include="Assets\Orthello\-Update-Upgrade info.txt" />
     <None Include="Assets\Orthello\Examples\0 - Simple Examples\TextSprites\Atlases\img.xml" />
+    <None Include="Assets\Fonts\Nightmare5_100pt.fnt" />
     <None Include="Assets\Orthello\Examples\0 - Simple Examples\TextSprites\Atlases\glyph.xml" />
     <None Include="Assets\Orthello\Examples\0 - Simple Examples\TextSprites\Atlases\chalk.xml" />
     <None Include="Assets\Orthello\Examples\0 - Simple Examples\Multi Resolution Art\atlas.xml" />

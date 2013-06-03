@@ -53,6 +53,7 @@
      <None Include="Assets\Orthello\Examples\0 - Simple Examples\TextSprites\orthello-font-30.txt" />
      <None Include="Assets\Orthello\-Update-Upgrade info.txt" />
      <None Include="Assets\Orthello\Examples\0 - Simple Examples\TextSprites\Atlases\img.xml" />
+     <None Include="Assets\Fonts\Nightmare5_100pt.fnt" />
      <None Include="Assets\Orthello\Examples\0 - Simple Examples\TextSprites\Atlases\glyph.xml" />
      <None Include="Assets\Orthello\Examples\0 - Simple Examples\TextSprites\Atlases\chalk.xml" />
      <None Include="Assets\Orthello\Examples\0 - Simple Examples\Multi Resolution Art\atlas.xml" />
